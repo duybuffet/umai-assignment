@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_07_034444) do
+ActiveRecord::Schema.define(version: 2022_08_07_042938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "owner_id"
+    t.text "comment"
+    t.string "feedbackable_type"
+    t.bigint "feedbackable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feedbackable_type", "feedbackable_id", "owner_id"], name: "index_unique_feedback", unique: true
+  end
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id"

@@ -4,6 +4,7 @@ class Rating < ActiveRecord::Base
   belongs_to :post
 
   validates :rate, numericality: { greater_than: 0, less_than: 6 }
+  validates :post, presence: true
 
   after_commit :update_post_average_rating, on: :create
 
