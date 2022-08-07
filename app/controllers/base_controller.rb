@@ -15,6 +15,6 @@ class BaseController
   private
 
   def params
-    request.params
+    request.params&.deep_symbolize_keys
   end
 end
