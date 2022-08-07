@@ -2,6 +2,9 @@ require_relative './base_controller'
 
 class PostsController < BaseController
   def index
+    return top_average_rating if params[:top_average_rating].present?
+
+    render_resources(Post.all, params)
   end
 
   def create
@@ -18,5 +21,9 @@ class PostsController < BaseController
 
   def post_params
     params.slice(:title, :content, :login, :author_ip)
+  end
+
+  def top_average_rating
+    render_resources(Post.by_average_rating, params, { each_serializer: PostAverageRatingSerializer })
   end
 end

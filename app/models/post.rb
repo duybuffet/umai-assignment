@@ -5,4 +5,6 @@ class Post < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
 
   validates :title, :content, :author, presence: true
+
+  scope :by_average_rating, -> { order(average_rating: :desc) }
 end
