@@ -35,8 +35,10 @@ class Router
       [:new, nil]
     when nil
       request.get? ? [:index, nil] : [:create, nil]
-    else
+    when /^(\d)+$/
       [:show, path_portion]
+    else
+      [path_portion.to_sym, nil]
     end
   end
 
