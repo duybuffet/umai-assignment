@@ -17,6 +17,10 @@ class PostsController < BaseController
     end
   end
 
+  def ip_where_authors_posted
+    render_resources(Post.group_by_author_ip, params, { each_serializer: IpWhereAuthorsPostedSerializer })
+  end
+
   private
 
   def post_params
