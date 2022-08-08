@@ -7,7 +7,7 @@ module Paginatable
   extend ActiveSupport::Concern
 
   def paginate(relation, params)
-    pagy(relation, page: params[:page] || 1, items: params[:items] || 25, size: [])
+    pagy(relation, page: params[:page] || 1, items: params[:count] || params[:items] || 25, size: [], count: params[:count])
   rescue Pagy::VariableError => e
     raise ArgumentError, e.message
   end
