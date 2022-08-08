@@ -58,5 +58,68 @@ RSpec.describe 'UmaiAssignment', type: :request do
         end
       end
     end
+
+    context 'POST /posts' do
+      context 'when params is valid' do
+        context 'when user login not exist yet' do
+          let(:params) do
+            {
+              'title': 'title',
+              'content': 'content',
+              'login': 'new_login',
+              'author_ip': '444.12.33.33'
+            }
+          end
+          it do
+            post '/posts', params
+
+            expect(last_response.status).to eq 200
+            expect(Post.count).to eq(1)
+            expect(User.last.login).to eq('new_login')
+          end
+        end
+        
+        context 'when user login does exist ' do
+          let!(:user) { create(:user, login: 'exist') }
+          let(:params) do
+            {
+              'title': 'title',
+              'content': 'content',
+              'login': 'exist',
+              'author_ip': '444.12.33.33'
+            }
+          end
+          it do
+            expect(User.count).to eq(1)
+            post '/posts', params
+
+            expect(last_response.status).to eq 200
+            expect(User.count).to eq(1)
+          end
+        end
+      end
+
+      context 'when params is invalid' do
+        let(:params) do
+          {
+            'title': 'title',
+            'content': 'content',
+            'login': 'exist',
+            'author_ip': '444.12.33.33'
+          }
+        end
+        ['title', 'content', 'author_id', 'login'].each do |field|
+          before do
+            params.delete(field.to_sym)
+          end
+          it do
+            post '/posts', params
+            expect(last_response.status).to eq 422
+            expect(User.count).to eq(0)
+          end
+        end
+        
+      end
+    end
   end
 end
