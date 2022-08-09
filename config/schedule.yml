@@ -1,0 +1,4 @@
+generate_feedback_job:
+  cron: "0 9 * * *"
+  class: "GenerateFeedbackWorker"
+  queue: default
