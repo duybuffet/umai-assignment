@@ -102,4 +102,29 @@ RSpec.describe 'PostsController', type: :request do
       
     end
   end
+
+  describe 'GET /posts/ip_where_authors_posted' do
+    let(:author_group_1) { ['author_grp1_1', 'author_grp1_2', 'author_grp1_3'] }
+    let(:author_group_2) { ['author_grp2_1', 'author_grp2_2'] }
+    let(:group_1_ip) { '11.22.33.44' }
+    let(:group_2_ip) { '44.33.22.11' }
+    before do
+      author_group_1.each do |author|
+        create(:post, author_ip: group_1_ip, author: create(:user, login: author))
+      end
+      author_group_2.each do |author|
+        create(:post, author_ip: group_2_ip, author: create(:user, login: author))
+      end
+    end
+    it 'should return author login grouped by ip' do
+      get '/posts/ip_where_authors_posted'
+      response = JSON.parse(last_response.body)
+      expect(last_response.status).to eq 200
+      expect(response['data'].size).to eq 2
+      expect(response['data'][0]['attributes']['author_ip']).to eq group_1_ip
+      expect(response['data'][0]['attributes']['authors']).to eq author_group_1
+      expect(response['data'][1]['attributes']['author_ip']).to eq group_2_ip
+      expect(response['data'][1]['attributes']['authors']).to eq author_group_2
+    end
+  end
 end
