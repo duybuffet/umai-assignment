@@ -3,7 +3,18 @@ development:
   encoding: unicode
   pool: 5
   timeout: 5000
-  host: host
+  host: localhost
   username: username
+  password: password
   port: 5432
   database: umai_assignment_development
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  host: localhost
+  username: username
+  password: password
+  port: 5432
+  database: umai_assignment_test
