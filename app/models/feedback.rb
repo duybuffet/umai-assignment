@@ -7,4 +7,12 @@ class Feedback < ActiveRecord::Base
   validates :owner_id, uniqueness: { scope: [:feedbackable_type, :feedbackable_id] }
 
   scope :from_owner, ->(owner_id) { where(owner_id: owner_id) }
+
+  def owner_login
+    return feedbackable.author.login if feedbackable_type == 'Post'
+
+    return feedbackable.login if feedbackable_type == 'User'
+
+    nil
+  end
 end
