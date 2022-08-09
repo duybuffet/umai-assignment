@@ -1,6 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'spec_helper'
+Dir.glob(File.expand_path('../spec/factories/*.rb', __FILE__)).each { |file| require(file) }
 
 # require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
