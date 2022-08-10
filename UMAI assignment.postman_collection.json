@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "9914c97b-3aed-49de-9df5-edaa8fb02307",
+		"name": "UMAI assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14126924"
+	},
+	"item": [
+		{
+			"name": "1. [POST] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"new post 26\",\n    \"content\": \"content goes here\",\n    \"login\": \"duy_tang\",\n    \"author_ip\": \"444.12.33.33\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/posts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. [RATING] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"post_id\": 26,\n    \"rate\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9292/ratings",
+					"host": [
+						"localhost"
+					],
+					"port": "9292",
+					"path": [
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. [POST] Top N Post By Avarage Rating",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/posts?top_average_rating=true&count=2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "top_average_rating",
+							"value": "true"
+						},
+						{
+							"key": "items",
+							"value": "20",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "count",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. IPs Where Author Posted Posts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/posts/ip_where_authors_posted",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts",
+						"ip_where_authors_posted"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. [FEEDBACK] Feedback post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"owner_id\": 1,\n    \"post_id\": 26,\n    \"comment\": \"Feedbacked\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9292/feedbacks",
+					"host": [
+						"localhost"
+					],
+					"port": "9292",
+					"path": [
+						"feedbacks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. [FEEDBACK] Feedback user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"owner_id\": 3,\n    \"user_id\": 1,\n    \"comment\": \"Feedbacked\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9292/feedbacks",
+					"host": [
+						"localhost"
+					],
+					"port": "9292",
+					"path": [
+						"feedbacks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
