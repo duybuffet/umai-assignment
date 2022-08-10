@@ -56,3 +56,9 @@ $ sidekiq -r ./worker.rb
 ```
 $ rspec spec/
 ```
+
+### Using postman to view the api endpoints
+At the root of the project you could see the collection file named UMAI_assignment.postman_collection.json, import it into postman
+
+Create new environment with key `host` and default value `http://localhost:9292`
+

@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"new post 26\",\n    \"content\": \"content goes here\",\n    \"login\": \"duy_tang\",\n    \"author_ip\": \"444.12.33.33\"\n}",
+					"raw": "{\n    \"title\": \"new post\",\n    \"content\": \"content goes here\",\n    \"login\": \"duy_tang\",\n    \"author_ip\": \"444.12.33.33\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,7 +39,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"post_id\": 26,\n    \"rate\": 1\n}",
+					"raw": "{\n    \"post_id\": 306908,\n    \"rate\": 5\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -47,11 +47,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:9292/ratings",
+					"raw": "{{host}}/ratings",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "9292",
 					"path": [
 						"ratings"
 					]
@@ -71,7 +70,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}/posts?top_average_rating=true&count=2",
+					"raw": "{{host}}/posts?top_average_rating=true&count=10",
 					"host": [
 						"{{host}}"
 					],
@@ -84,18 +83,8 @@
 							"value": "true"
 						},
 						{
-							"key": "items",
-							"value": "20",
-							"disabled": true
-						},
-						{
-							"key": "page",
-							"value": "1",
-							"disabled": true
-						},
-						{
 							"key": "count",
-							"value": "2"
+							"value": "10"
 						}
 					]
 				}
@@ -114,13 +103,19 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}/posts/ip_where_authors_posted",
+					"raw": "{{host}}/posts/ip_where_authors_posted?items=10",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"posts",
 						"ip_where_authors_posted"
+					],
+					"query": [
+						{
+							"key": "items",
+							"value": "10"
+						}
 					]
 				}
 			},
@@ -133,7 +128,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"owner_id\": 1,\n    \"post_id\": 26,\n    \"comment\": \"Feedbacked\"\n}",
+					"raw": "{\n    \"owner_id\": 2,\n    \"post_id\": 306908,\n    \"comment\": \"Feedbacked\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,11 +136,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:9292/feedbacks",
+					"raw": "{{host}}/feedbacks",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "9292",
 					"path": [
 						"feedbacks"
 					]
@@ -154,7 +148,7 @@
 			"response": []
 		},
 		{
-			"name": "5. [FEEDBACK] Feedback user",
+			"name": "6. [FEEDBACK] Feedback user",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -168,11 +162,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:9292/feedbacks",
+					"raw": "{{host}}/feedbacks",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "9292",
 					"path": [
 						"feedbacks"
 					]
